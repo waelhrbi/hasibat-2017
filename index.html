@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة نقاط الترقية العلمية — تعليمات 167 لسنة 2017</title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --mid: #0E1E2C;
+      --lapis: #144A66;
+      --gold: #A87E32;
+      --bg: #EEF1F4;
+      --card: #FFFFFF;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --green: #1E7E34;
+      --red: #B33C3C;
+      --orange: #C76A1E;
+      --text: #1E2A36;
+      --mut: #5A6B7A;
+      --ln: #CDD6DD;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Tajawal', sans-serif;
+      padding: 0 0 40px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: clamp(14px, 4vw, 46px);
+    }
+    .main-header {
+      background: var(--mid);
+      color: white;
+      padding: 28px 20px 22px;
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      text-align: center;
+    }
+    .main-header h1 {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      letter-spacing: 0.5px;
+    }
+    .main-header .sub {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+    .main-header .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #1E1A14;
+      padding: 4px 18px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+    .alert-box {
+      background: #FFF3E0;
+      border-right: 6px solid var(--gold);
+      padding: 16px 22px;
+      border-radius: 12px;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .alert-box strong {
+      color: #A87E32;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .card-title {
+      font-family: 'Amiri', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--lapis);
+      border-bottom: 2px solid #CDD6DD;
+      padding-bottom: 12px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .card-title small {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #5E6F7D;
+    }
+    .toggle-radio {
+      display: none;
+    }
+    .step-wrap {
+      display: none;
+    }
+    #step1:checked ~ .wrap .step1-content,
+    #step2:checked ~ .wrap .step2-content,
+    #step3:checked ~ .wrap .step3-content,
+    #step4:checked ~ .wrap .step4-content,
+    #step5:checked ~ .wrap .step5-content {
+      display: block;
+    }
+    .step-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 4px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #CDD6DD;
+      padding-bottom: 8px;
+    }
+    .step-tabs label {
+      background: #E3EEF4;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #3D4B59;
+      cursor: pointer;
+      transition: 0.15s;
+      border: 2px solid transparent;
+    }
+    .step-tabs label:hover {
+      background: #D8E2E8;
+    }
+    #step1:checked ~ .wrap .step-tabs label[for="step1"],
+    #step2:checked ~ .wrap .step-tabs label[for="step2"],
+    #step3:checked ~ .wrap .step-tabs label[for="step3"],
+    #step4:checked ~ .wrap .step-tabs label[for="step4"],
+    #step5:checked ~ .wrap .step-tabs label[for="step5"] {
+      background: var(--lapis);
+      color: white;
+      border-color: var(--lapis);
+    }
+    .rank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 16px 0 12px;
+    }
+    .rank-card {
+      background: #F4F7F9;
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: 0.1s;
+      text-align: center;
+    }
+    .rank-card:hover {
+      border-color: #93A2AE;
+    }
+    .rank-card input[type="radio"] {
+      display: none;
+    }
+    .rank-card .label {
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: block;
+    }
+    .rank-card .detail {
+      font-size: 0.85rem;
+      color: #3F4E5E;
+      margin-top: 4px;
+    }
+    .rank-card .sharts {
+      font-size: 0.8rem;
+      background: #E3EEF4;
+      padding: 4px 10px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .rank-card.selected {
+      border-color: var(--gold);
+      background: #FCF8F0;
+    }
+    .field-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 20px;
+      margin: 12px 0;
+    }
+    .field-group label {
+      font-weight: 500;
+      min-width: 110px;
+    }
+    .field-group input, .field-group select {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border: 2px solid #CDD6DD;
+      border-radius: 10px;
+      background: white;
+      width: 140px;
+      transition: 0.1s;
+    }
+    .field-group input:focus, .field-group select:focus {
+      border-color: var(--lapis);
+      outline: none;
+    }
+    .field-group input[type="number"] {
+      width: 88px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .field-group .hint {
+      font-size: 0.8rem;
+      color: #6A7B8A;
+    }
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 16px 0 8px;
+      background: #FBFDFE;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ref-table th {
+      background: var(--lapis);
+      color: white;
+      padding: 10px 8px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .ref-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #E1E7EB;
+      text-align: center;
+    }
+    .ref-table .highlight-col {
+      background: #FCF5E8;
+      font-weight: 700;
+    }
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px 20px;
+      margin: 16px 0;
+    }
+    .input-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .input-item label {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .input-item input, .input-item select {
+      padding: 8px 10px;
+      border: 2px solid #CDD6DD;
+      border-radius: 10px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+    .input-item input:focus, .input-item select:focus {
+      border-color: var(--lapis);
+      outline: none;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin: 6px 0;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--lapis);
+    }
+    .status-msg {
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin: 12px 0;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .status-ok {
+      background: #E3F5E9;
+      color: #1A5E30;
+      border-right: 6px solid var(--green);
+    }
+    .status-fail {
+      background: #FDE8E8;
+      color: #8F2E2E;
+      border-right: 6px solid var(--red);
+    }
+    .status-idle {
+      background: #F2F0EC;
+      color: #4D5A66;
+      border-right: 6px solid #93A2AE;
+    }
+    .status-early {
+      background: #E3F5E9;
+      color: #1A5E30;
+      border-right: 6px solid var(--orange);
+    }
+    .status-bad {
+      background: #FCE4D6;
+      color: #9E4A1A;
+      border-right: 6px solid var(--orange);
+    }
+    .progress-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 30px;
+      margin: 18px 0 12px;
+      align-items: center;
+    }
+    .progress-item {
+      flex: 1 1 200px;
+    }
+    .progress-item .label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-bar {
+      height: 14px;
+      background: #E1E7EB;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      border-radius: 30px;
+      background: var(--gold);
+      transition: width 0.2s;
+      width: 0%;
+    }
+    .progress-bar .fill.green {
+      background: var(--green);
+    }
+    .progress-bar .fill.red {
+      background: var(--red);
+    }
+    .result-box {
+      padding: 20px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin: 16px 0 8px;
+      text-align: center;
+    }
+    .result-pass {
+      background: #E3F5E9;
+      color: #1A5E30;
+      border: 2px solid var(--green);
+    }
+    .result-fail {
+      background: #FDE8E8;
+      color: #8F2E2E;
+      border: 2px solid var(--red);
+    }
+    .result-warn {
+      background: #FFF3E0;
+      color: #9E5E1A;
+      border: 2px solid var(--orange);
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.15s;
+      background: #E1E7EB;
+      color: #1E2A36;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--lapis);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #0F3A4F;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #1E1A14;
+    }
+    .btn-gold:hover {
+      background: #966E2A;
+      color: white;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--lapis);
+      color: var(--lapis);
+    }
+    .btn-outline:hover {
+      background: var(--lapis);
+      color: white;
+    }
+    .btn-sm {
+      padding: 6px 16px;
+      font-size: 0.8rem;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 8px;
+    }
+    .collapsible {
+      border: 2px solid #CDD6DD;
+      border-radius: 12px;
+      margin: 16px 0;
+      background: #FBFDFE;
+    }
+    .collapsible-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--lapis);
+      transition: background 0.15s;
+      border-radius: 12px;
+    }
+    .collapsible-header:hover {
+      background: #F0EDE7;
+    }
+    .collapsible-header .toggle-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--gold);
+      transition: transform 0.2s;
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+    }
+    .collapsible-header .toggle-icon.open {
+      transform: rotate(90deg);
+    }
+    .collapsible-body {
+      padding: 0 18px 18px 18px;
+      display: none;
+    }
+    .collapsible-body.open {
+      display: block;
+    }
+    .doc-card {
+      background: #F4F7F9;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin: 10px 0;
+      border-right: 4px solid var(--gold);
+    }
+    .doc-card .doc-label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+    .doc-card .doc-hint {
+      font-size: 0.8rem;
+      color: #5A6B7A;
+      margin-right: 10px;
+    }
+    .doc-card .field-group {
+      margin: 6px 0;
+    }
+    .doc-card .field-group label {
+      min-width: 80px;
+      font-weight: 500;
+    }
+    .doc-card .field-group input {
+      width: 160px;
+    }
+    .doc-card .field-group input[type="date"] {
+      width: 150px;
+    }
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px 16px;
+      margin: 6px 0;
+    }
+    .doc-grid .field-group {
+      margin: 4px 0;
+    }
+    .doc-grid .field-group label {
+      min-width: 70px;
+      font-size: 0.9rem;
+    }
+    .doc-grid .field-group input {
+      width: 100%;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #CDD6DD;
+      font-size: 0.8rem;
+      color: #5A6B7A;
+      text-align: center;
+    }
+    .footer-note .credit {
+      font-weight: 700;
+      color: var(--lapis);
+      margin-bottom: 6px;
+    }
+    #jsflag {
+      display: inline-block;
+      padding: 2px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #93A2AE;
+      color: white;
+      margin-right: 8px;
+    }
+    #jsflag.active {
+      background: var(--green);
+    }
+    .table-responsive {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+    .table-responsive table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: center;
+      min-width: 700px;
+    }
+    .table-responsive table th {
+      background: var(--mid);
+      color: white;
+      padding: 10px 8px;
+      border: 1px solid var(--ln);
+      font-weight: 700;
+    }
+    .table-responsive table td {
+      padding: 8px 6px;
+      border: 1px solid var(--ln);
+      vertical-align: middle;
+    }
+    .table-responsive table select, .table-responsive table input {
+      width: 100%;
+      padding: 6px 4px;
+      border: 1px solid var(--ln);
+      border-radius: 6px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.9rem;
+      background: white;
+    }
+    .table-responsive table .btn-remove {
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .table-responsive table .btn-remove:hover {
+      opacity: 0.8;
+    }
+    .btn-add {
+      background: var(--green);
+      color: white;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.15s;
+    }
+    .btn-add:hover {
+      opacity: 0.85;
+    }
+    .warning-area {
+      background: #FFF3E0;
+      border-right: 6px solid var(--orange);
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin: 12px 0;
+      font-size: 0.9rem;
+      color: #9E5E1A;
+      display: none;
+    }
+    .warning-area.show {
+      display: block;
+    }
+    .warning-area .warn-item {
+      margin: 4px 0;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 16px; }
+      .field-group { flex-direction: column; align-items: stretch; }
+      .field-group input, .field-group select { width: 100%; }
+      .field-group input[type="number"] { width: 100%; }
+      .rank-grid { grid-template-columns: 1fr; }
+      .step-tabs label { padding: 6px 12px; font-size: 0.8rem; }
+      .input-grid { grid-template-columns: 1fr; }
+      .ref-table { font-size: 0.75rem; }
+      .ref-table th, .ref-table td { padding: 6px 4px; }
+      .doc-grid { grid-template-columns: 1fr; }
+      .doc-card .field-group input { width: 100%; }
+      .table-responsive table { font-size: 12px; min-width: 500px; }
+      .table-responsive table th, .table-responsive table td { padding: 4px; }
+    }
+    .hidden { display: none !important; }
+    .text-muted { color: #5A6B7A; font-size: 0.85rem; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mb-8 { margin-bottom: 8px; }
+    .flex-center { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="main-header">
+    <h1>📘 حاسبة نقاط الترقية العلمية</h1>
+    <div class="sub">تعليمات رقم (167) لسنة 2017 — وزارة التعليم العالي والبحث العلمي</div>
+    <div class="badge">نافذة منذ 2018 · ألغيت بـ 2025</div>
+  </header>
+
+  <div class="alert-box">
+    <strong>⚠️ تنبيه:</strong> هذه التعليمات (167 لسنة 2017) ألغتها تعليمات (10) لسنة 2025 اعتباراً من نفاذها في <strong>2026/12/22</strong>، ولا تسري أحكام التعليمات الجديدة على معاملات مروَّجة قبل ذلك التاريخ — فتبقى هذه الحاسبة مرجعاً صحيحاً للمعاملات الجارية حالياً. تحقق من تاريخ ترويج معاملتك قبل الاعتماد على أي من الحاسبتين.
+  </div>
+
+  <input type="radio" id="step1" name="step" class="toggle-radio" checked>
+  <input type="radio" id="step2" name="step" class="toggle-radio">
+  <input type="radio" id="step3" name="step" class="toggle-radio">
+  <input type="radio" id="step4" name="step" class="toggle-radio">
+  <input type="radio" id="step5" name="step" class="toggle-radio">
+
+  <div class="wrap">
+
+    <div class="step-tabs">
+      <label for="step1">① اللقب والتخصص</label>
+      <label for="step2">② المدة القانونية</label>
+      <label for="step3">③ جدول (1) البحوث</label>
+      <label for="step4">④ جدول (2) النشاطات</label>
+      <label for="step5">⑤ التوثيق والنتيجة</label>
+    </div>
+
+    <!-- ============ STEP 1 ============ -->
+    <div class="step1-content step-wrap">
+      <div class="card">
+        <div class="card-title">① اختيار اللقب العلمي <small>م 1-4</small></div>
+        <div class="rank-grid" id="rankGrid">
+          <label class="rank-card" data-rank="مدرس" data-total="70" data-t1="46" data-t2="24" data-years="3" data-early="0">
+            <input type="radio" name="rank" value="مدرس" checked>
+            <span class="label">مدرس</span>
+            <span class="detail">بعد ٣ سنوات كـ مدرس مساعد</span>
+            <span class="sharts">المجموع 70 · ج1 ≥46 · ج2 ≥24</span>
+          </label>
+          <label class="rank-card" data-rank="أستاذ مساعد" data-total="80" data-t1="52" data-t2="28" data-years="4" data-early="1">
+            <input type="radio" name="rank" value="أستاذ مساعد">
+            <span class="label">أستاذ مساعد</span>
+            <span class="detail">بعد ٤ سنوات كـ مدرس</span>
+            <span class="sharts">المجموع 80 · ج1 ≥52 · ج2 ≥28</span>
+          </label>
+          <label class="rank-card" data-rank="أستاذ" data-total="90" data-t1="59" data-t2="31" data-years="6" data-early="1">
+            <input type="radio" name="rank" value="أستاذ">
+            <span class="label">أستاذ</span>
+            <span class="detail">بعد ٦ سنوات كـ أستاذ مساعد</span>
+            <span class="sharts">المجموع 90 · ج1 ≥59 · ج2 ≥31</span>
+          </label>
+        </div>
+        <div class="text-muted mt-8">
+          <span id="jsflag">⏳ جافاسكربت</span>
+          <span style="margin-right:16px;">⚠️ الحاسبة استرشادية ولا تغني عن تدقيق اللجان.</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-start;gap:12px;">
+        <label for="step2" class="btn btn-primary">التالي: المدة القانونية →</label>
+      </div>
+    </div>
+
+    <!-- ============ STEP 2 ============ -->
+    <div class="step2-content step-wrap">
+      <div class="card">
+        <div class="card-title">② التحقق من المدة القانونية <small>م 1-4</small></div>
+        <div class="field-group">
+          <label>تاريخ اللقب السابق:</label>
+          <input type="date" id="prevDate" value="2018-01-01" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <label>تاريخ تقديم الطلب:</label>
+          <input type="date" id="applyDate" value="2022-01-01" autocomplete="off">
+        </div>
+        <div id="maturityStatus" class="status-msg status-idle">⏳ أدخل التاريخين ليظهر حكم المدة تلقائياً.</div>
+        <div class="text-muted">* يحق للأستاذ المساعد والأستاذ التقديم قبل سنة من المدة المحددة (م4).</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <label for="step3" class="btn btn-primary">التالي: جدول (1) البحوث →</label>
+        <label for="step1" class="btn btn-outline">← السابق</label>
+      </div>
+    </div>
+
+    <!-- ============ STEP 3 ============ -->
+    <div class="step3-content step-wrap">
+      <div class="card">
+        <div class="card-title">③ جدول (1) — البحوث المنشورة <small>دمج جدول 1-أ و 1-ب</small></div>
+        <p style="font-size:0.9rem;color:var(--mut);margin-bottom:12px;">يمكن للباحث في أي تخصص إدخال بحوثه من أي تصنيف (ذات معامل تأثير، عالمية، عربية/عراقية، مجلات رصينة عربية/عراقية). تُحتسب النقاط تلقائياً حسب المرتبة العلمية ونوع المجلة ودور الباحث، وتجمع جميع النقاط معاً.</p>
+
+        <!-- جدول البحوث التفاعلي -->
+        <div style="background:#F4F7F9; padding:16px; border-radius:12px; margin:12px 0; border:1px solid var(--ln);">
+          <div class="table-responsive">
+            <table style="width:100%; border-collapse:collapse; font-size:14px; text-align:center;" id="researchTable">
+              <thead>
+                <tr style="background:var(--mid); color:#fff;">
+                  <th style="padding:8px; border:1px solid var(--ln);">تصنيف المجلة</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">دور الباحث</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">عدد البحوث</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">النقاط لكل بحث</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="researchTableBody">
+                <!-- سيتم إضافة الصفوف بواسطة JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <button type="button" onclick="addResearchRow()" class="btn-add">➕ إضافة فئة بحث جديدة</button>
+        </div>
+
+        <div id="t1ScoreDisplay" class="status-msg status-idle" style="margin-top:16px;">⏳ نقاط جدول (1): 0</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <label for="step4" class="btn btn-primary">التالي: جدول (2) النشاطات →</label>
+        <label for="step2" class="btn btn-outline">← السابق</label>
+      </div>
+    </div>
+
+    <!-- ============ STEP 4 ============ -->
+    <div class="step4-content step-wrap">
+      <div class="card">
+        <div class="card-title">④ جدول (2) — النشاطات وخدمة المجتمع</div>
+        <div style="font-size:0.85rem;color:#5A6B7A;margin-bottom:12px;">⚠️ فروق جوهرية عن تعليمات 2025 مُشار إليها في كل بند.</div>
+
+        <!-- ====== منطقة التحذيرات ====== -->
+        <div id="warningArea" class="warning-area"></div>
+
+        <!-- ====== الكتب (جدول تفاعلي) ====== -->
+        <div style="background:#F4F7F9; padding:16px; border-radius:12px; margin:12px 0; border:1px solid var(--ln);">
+          <strong style="color: var(--lapis); display: block; margin-bottom: 8px;">📘 النتاجات والكتب المؤلفة والمترجمة (ISBN)</strong>
+          <p style="font-size: 13px; color: var(--mut); margin-bottom: 12px;">تمنح نقاط الكتب ضمن جدول (2) بحسب عدد الصفحات ونوع المشاركة حصراً (م2 من الجدول)، وعلى أن يكون الكتاب حاصلاً على الرقم الدولي المعياري (ISBN) — بلا أي أثر لجهة النشر (محلية/عالمية) على النقاط، خلافاً لما ورد في تعليمات 2025.</p>
+          
+          <div class="table-responsive">
+            <table style="width:100%; border-collapse:collapse; font-size:14px; text-align:center;" id="booksTable">
+              <thead>
+                <tr style="background:var(--mid); color:#fff;">
+                  <th style="padding:8px; border:1px solid var(--ln);">عنوان الكتاب / الـ ISBN</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">نوع الكتاب</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">عدد الصفحات</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">نوع المشاركة</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">النقاط</th>
+                  <th style="padding:8px; border:1px solid var(--ln);">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="booksTableBody">
+                <!-- سيتم إضافة الصفوف بواسطة JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <button type="button" onclick="addBookRow()" class="btn-add">➕ إضافة كتاب جديد</button>
+        </div>
+
+        <!-- باقي نشاطات جدول (2) -->
+        <!-- conference -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📄 بحث منشور في مؤتمر علمي — لا اشتراط فهرسة (بخلاف 2025)</strong>
+          <div class="input-grid">
+            <div class="input-item"><label>داخل العراق (5 نقاط)</label><input type="number" min="0" step="1" value="0" data-cat="conf_i"></div>
+            <div class="input-item"><label>خارج العراق (10 نقاط)</label><input type="number" min="0" step="1" value="0" data-cat="conf_o"></div>
+          </div>
+        </div>
+
+        <!-- study -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📊 دراسة علمية تعالج مشكلة مجتمعية</strong>
+          <div class="input-grid">
+            <div class="input-item"><label>في التخصص (15)</label><input type="number" min="0" step="1" value="0" data-cat="study_sp"></div>
+            <div class="input-item"><label>خارج التخصص (10)</label><input type="number" min="0" step="1" value="0" data-cat="study_gn"></div>
+          </div>
+        </div>
+
+        <!-- subject review (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📑 مقال مراجعة الموضوع (Subject review) — 5 نقاط لكل مقال، سقف 10 (لا اشتراط تصنيف أرباع)</strong>
+          <div class="input-item"><label>عدد المقالات</label><input type="number" min="0" step="1" value="0" data-cat="review"></div>
+        </div>
+
+        <!-- patent -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🔬 براءة اختراع</strong>
+          <div class="input-grid">
+            <div class="input-item"><label>دولية (25)</label><input type="number" min="0" step="1" value="0" data-cat="pat_i"></div>
+            <div class="input-item"><label>محلية (10)</label><input type="number" min="0" step="1" value="0" data-cat="pat_l"></div>
+          </div>
+        </div>
+
+        <!-- medals -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🏅 أوسمة علمية</strong>
+          <div class="checkbox-group">
+            <label><input type="checkbox" data-cat="medal_i"> دولية (10)</label>
+            <label><input type="checkbox" data-cat="medal_l"> محلية (5)</label>
+          </div>
+        </div>
+
+        <!-- evaluation (cap 5 inside, 6 outside) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📝 تقييم بحوث / مراجعة كتاب</strong>
+          <div class="input-grid">
+            <div class="input-item"><label>داخل العراق (نقطة لكل، سقف 5)</label><input type="number" min="0" step="1" value="0" data-cat="eval_i"></div>
+            <div class="input-item"><label>خارج العراق (نقطتان لكل، سقف 6)</label><input type="number" min="0" step="1" value="0" data-cat="eval_o"></div>
+          </div>
+        </div>
+
+        <!-- exam committees (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🗂️ اللجان الامتحانية (نقطتان لكل، سقف 10)</strong>
+          <div class="input-item"><label>عدد اللجان</label><input type="number" min="0" step="1" value="0" data-cat="exam"></div>
+        </div>
+
+        <!-- training (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🧑‍🏫 محاضر في دورات تدريبية / تعليم مستمر (نقطتان لكل، سقف 10)</strong>
+          <div class="input-item"><label>عدد الدورات</label><input type="number" min="0" step="1" value="0" data-cat="train"></div>
+        </div>
+
+        <!-- teaching hospitals (flat) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🏥 العمل في المستشفيات التعليمية (15 نقطة)</strong>
+          <div class="checkbox-group"><label><input type="checkbox" data-cat="hosp_flat"> مُطبَّق</label></div>
+        </div>
+
+        <!-- editor in chief -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📰 رئيس/مدير تحرير مجلة علمية (10)</strong>
+          <div class="checkbox-group"><label><input type="checkbox" data-cat="editor_chief"> مُطبَّق</label></div>
+        </div>
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📰 عضو هيئة تحرير مجلة (5)</strong>
+          <div class="checkbox-group"><label><input type="checkbox" data-cat="editor_member"> مُطبَّق</label></div>
+        </div>
+
+        <!-- quality -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📋 مسؤول الوحدة الإدارية لضمان الجودة (3)</strong>
+          <div class="checkbox-group"><label><input type="checkbox" data-cat="quality"> مُطبَّق</label></div>
+        </div>
+
+        <!-- dept creation (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🏛️ استحداث الأقسام العلمية (نقطتان لكل، سقف 10)</strong>
+          <div class="input-item"><label>عدد الاستحداثات</label><input type="number" min="0" step="1" value="0" data-cat="dept_create"></div>
+        </div>
+
+        <!-- supervision (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🧑‍🎓 الإشراف التربوي (نقطة لكل تكليف، سقف 10)</strong>
+          <div class="input-item"><label>عدد التكاليف</label><input type="number" min="0" step="1" value="0" data-cat="superv_edu"></div>
+        </div>
+
+        <!-- master abroad -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🌍 الإشراف على طلبة الماجستير خارج العراق</strong>
+          <select data-cat="master_ab" style="padding:8px;border-radius:10px;border:2px solid #CDD6DD;font-family:inherit;width:200px;">
+            <option value="0">لا يوجد</option>
+            <option value="5">طالب واحد (5)</option>
+            <option value="10">طالبان فأكثر (10)</option>
+          </select>
+        </div>
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🌍 الإشراف على طلبة الدكتوراه خارج العراق</strong>
+          <select data-cat="phd_ab" style="padding:8px;border-radius:10px;border:2px solid #CDD6DD;font-family:inherit;width:200px;">
+            <option value="0">لا يوجد</option>
+            <option value="10">طالب واحد (10)</option>
+            <option value="20">طالبان فأكثر (20)</option>
+          </select>
+        </div>
+
+        <!-- extracurricular (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🎭 النشاطات اللاصفية (نقطتان لكل، سقف 10)</strong>
+          <div class="input-item"><label>عدد المشاركات</label><input type="number" min="0" step="1" value="0" data-cat="extra"></div>
+        </div>
+
+        <!-- conf committees (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🤝 عضوية لجان المؤتمرات (نقطتان لكل، سقف 10)</strong>
+          <div class="input-item"><label>عدد اللجان</label><input type="number" min="0" step="1" value="0" data-cat="conf_comm"></div>
+        </div>
+
+        <!-- internal dept (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🏢 الإشراف على الأقسام الداخلية (5 نقاط لكل عام، سقف 10)</strong>
+          <div class="input-item"><label>عدد السنوات</label><input type="number" min="0" step="1" value="0" data-cat="internal_dept"></div>
+        </div>
+
+        <!-- ministerial committees (cap 10) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📌 اللجان الوزارية (5 نقاط لكل، سقف 10)</strong>
+          <div class="input-item"><label>عدد اللجان</label><input type="number" min="0" step="1" value="0" data-cat="min_comm"></div>
+        </div>
+
+        <!-- cooperation -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>🤝 تعاون تربوي مع جامعات عالمية</strong>
+          <select data-cat="coop" style="padding:8px;border-radius:10px;border:2px solid #CDD6DD;font-family:inherit;width:200px;">
+            <option value="0">لا يوجد</option>
+            <option value="5">مشاركة واحدة (5)</option>
+            <option value="10">مشاركتان فأكثر (10)</option>
+          </select>
+        </div>
+
+        <!-- H-index (cap 30) -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;border-right:4px solid var(--gold);">
+          <strong>📈 مؤشر هيرش (H1) — اختياري بحت، نقطة لكل قيمة، سقف 30 (بلا عتبة إلزامية)</strong>
+          <div class="input-item"><label>قيمة H1 (من Scopus)</label><input type="number" min="0" step="1" value="0" data-cat="hirsch"></div>
+        </div>
+
+        <!-- performance eval -->
+        <div style="background:#F4F7F9;padding:12px 16px;border-radius:12px;margin:12px 0;">
+          <strong>📊 معدل تقييم الأداء (أرقام مختلفة عن 2025)</strong>
+          <select data-cat="perf" style="padding:8px;border-radius:10px;border:2px solid #CDD6DD;font-family:inherit;width:200px;">
+            <option value="0">لا يوجد</option>
+            <option value="6">70–79 (6)</option>
+            <option value="8">80–89 (8)</option>
+            <option value="10">90–99 (10)</option>
+          </select>
+        </div>
+
+        <div id="t2ScoreDisplay" class="status-msg status-idle" style="margin-top:16px;">⏳ نقاط جدول (2): 0</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <label for="step5" class="btn btn-primary">التالي: التوثيق والنتيجة →</label>
+        <label for="step3" class="btn btn-outline">← السابق</label>
+      </div>
+    </div>
+
+    <!-- ============ STEP 5 ============ -->
+    <div class="step5-content step-wrap">
+      <div class="card">
+        <div class="card-title">⑤ التوثيق الإداري والنتيجة النهائية</div>
+
+        <!-- ====== التوثيق الإداري (قابل للطي) ====== -->
+        <div class="collapsible" id="docCollapsible">
+          <div class="collapsible-header" id="docToggle">
+            <span class="toggle-icon" id="docIcon">▶</span>
+            <span>📂 التوثيق الإداري (اضغط للتوسيع)</span>
+          </div>
+          <div class="collapsible-body" id="docBody">
+            <div class="text-muted" style="margin-bottom:10px;padding:8px 12px;background:#FFF3E0;border-radius:8px;border-right:4px solid var(--orange);">
+              ⚠️ البطاقات (2) إلى (5) — دورات سلامة اللغة، طرائق التدريس، كفاءة الحاسوب، واختبار صلاحية التدريس — <b>ممارسة إدارية عرفية شائعة، ولا سند صريح لها في نص تعليمات (167) لسنة 2017</b>؛ راجع ما تشترطه جامعتك ووحدتك تحديداً. أما "تأييد لجنة الرصانة" فمصطلح عملي شائع أيضاً، والأقرب نصاً هو وصف "مجلة علمية رصينة" لا لجنة مستقلة بهذا الاسم.
+            </div>
+            <!-- 1. الأمر الجامعي لآخر لقب علمي -->
+            <div class="doc-card">
+              <span class="doc-label">1. الأمر الجامعي لآخر لقب علمي</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_order" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_order_date">
+              </div>
+            </div>
+
+            <!-- 2. دورة سلامة اللغة العربية -->
+            <div class="doc-card">
+              <span class="doc-label">2. دورة سلامة اللغة العربية</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_arabic" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_arabic_date">
+              </div>
+            </div>
+
+            <!-- 3. دورة طرائق التدريس -->
+            <div class="doc-card">
+              <span class="doc-label">3. دورة طرائق التدريس</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_teaching" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_teaching_date">
+              </div>
+            </div>
+
+            <!-- 4. دورة كفاءة الحاسوب -->
+            <div class="doc-card">
+              <span class="doc-label">4. دورة كفاءة الحاسوب</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_computer" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_computer_date">
+              </div>
+            </div>
+
+            <!-- 5. اختبار صلاحية التدريس -->
+            <div class="doc-card">
+              <span class="doc-label">5. اختبار صلاحية التدريس</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_teaching_test" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_teaching_test_date">
+              </div>
+            </div>
+
+            <!-- 6. الاستلال الإلكتروني -->
+            <div class="doc-card">
+              <span class="doc-label">6. الاستلال الإلكتروني</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_plag_e" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_plag_e_date">
+              </div>
+              <div class="text-muted" style="margin-top:4px;">⚠️ يجب ألا تزيد نسبة الاقتباس على 20% (م29).</div>
+            </div>
+
+            <!-- 7. الاستلال الورقي -->
+            <div class="doc-card">
+              <span class="doc-label">7. الاستلال الورقي</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_plag_p" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_plag_p_date">
+              </div>
+            </div>
+
+            <!-- 8. تأييد لجنة الرصانة -->
+            <div class="doc-card">
+              <span class="doc-label">8. تأييد لجنة الرصانة</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_rank" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_rank_date">
+              </div>
+            </div>
+
+            <!-- 9. محضر اللجنة العلمية -->
+            <div class="doc-card">
+              <span class="doc-label">9. محضر اللجنة العلمية (الاقتباس والتخصص — م12/ثانياً)</span>
+              <div class="field-group">
+                <label>رقم الأمر:</label>
+                <input type="text" id="doc_comm" placeholder="رقم الأمر" style="width:200px;">
+                <label>التاريخ:</label>
+                <input type="date" id="doc_comm_date">
+              </div>
+            </div>
+
+            <!-- 10. معامل هيرش (Scopus) -->
+            <div class="doc-card">
+              <span class="doc-label">10. معامل هيرش — صفحة الملف الشخصي للباحث من Scopus</span>
+              <div class="doc-grid">
+                <div class="field-group"><label>اسم الباحث:</label><input type="text" id="doc_hirsch_name" placeholder="الاسم الكامل"></div>
+                <div class="field-group"><label>عدد البحوث:</label><input type="number" id="doc_hirsch_papers" min="0" step="1" value="0"></div>
+                <div class="field-group"><label>قيمة معامل هيرش (H):</label><input type="number" id="doc_hirsch_h" min="0" step="1" value="0"></div>
+                <div class="field-group"><label>مجموع الاقتباسات:</label><input type="number" id="doc_hirsch_citations" min="0" step="1" value="0"></div>
+              </div>
+              <div style="margin-top:8px;border-top:1px solid #E1E7EB;padding-top:8px;">
+                <strong>تأييد مركز الحاسبة:</strong>
+                <div class="field-group">
+                  <label>رقم الأمر:</label>
+                  <input type="text" id="doc_hirsch_order" placeholder="رقم الأمر" style="width:200px;">
+                  <label>التاريخ:</label>
+                  <input type="date" id="doc_hirsch_date">
+                </div>
+              </div>
+            </div>
+
+            <div class="text-muted" style="margin-top:12px;">⚠️ ملاحظة: هذه الأقسام توثيقية ولا تدخل في حساب النقاط، ولكنها مطلوبة إدارياً.</div>
+          </div>
+        </div>
+
+        <!-- نسبة الإضافة -->
+        <div style="margin:18px 0 12px;">
+          <strong>نسبة إضافة المنصب (م10 لسنة 2017) — متدرجة 3/5/10%</strong>
+          <div class="field-group">
+            <label>المنصب الإداري:</label>
+            <select id="adminBonus" style="width:240px;">
+              <option value="0">لا يوجد (0%)</option>
+              <option value="3">مساعد رئيس جامعة/مجلس طبي (3%)</option>
+              <option value="5">عميد/معاون، رئيس مجلس علمي، مدير قسم برئاسة الجامعة، عضو لجنة وزارية دائمة (5%)</option>
+              <option value="10">رئيس قسم/فرع علمي، مدير قسم في الوزارة (10%)</option>
+            </select>
+          </div>
+          <div class="text-muted">* تُخفض الحدود الدنيا المطلوبة بنسبة الإدارة (تُطبق على كل من ج1، ج2، والمجموع الكلي) بشرط استيفاء نصف المدة الأصغرية.</div>
+        </div>
+
+        <!-- نتيجة -->
+        <div id="finalResult" class="result-box result-warn">⏳ جارٍ حساب النتيجة...</div>
+
+        <div class="progress-wrap">
+          <div class="progress-item">
+            <div class="label"><span>جدول (1) — البحوث</span><span id="progT1Label">0 / 0</span></div>
+            <div class="progress-bar"><div class="fill" id="progT1" style="width:0%;"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="label"><span>جدول (2) — النشاطات</span><span id="progT2Label">0 / 0</span></div>
+            <div class="progress-bar"><div class="fill" id="progT2" style="width:0%;"></div></div>
+          </div>
+        </div>
+
+        <div id="maturityResult" class="status-msg status-idle">⏳ المدة: غير محسوبة</div>
+        <div id="adminBonusStatus" class="text-muted">⏳ شرط نصف المدة: غير محسوب</div>
+
+        <div class="btn-group">
+          <button id="printBtn" class="btn btn-gold">🖨️ طباعة التقرير</button>
+          <button id="csvBtn" class="btn btn-outline">📊 تصدير CSV</button>
+          <button id="saveBtn" class="btn btn-primary">💾 حفظ التقدم</button>
+          <button id="loadBtn" class="btn btn-outline">📂 استرجاع</button>
+          <button id="resetBtn" class="btn" style="background:#CDD6DD;">🔄 بدء معاملة جديدة</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <label for="step4" class="btn btn-outline">← السابق</label>
+      </div>
+    </div>
+
+  </div><!-- end wrap -->
+
+  <div class="footer-note">
+    <div class="credit">إعداد: حاسبة الترقيات العلمية — تعليمات 167 لسنة 2017</div>
+    <div>إخلاء مسؤولية: أداة استرشادية تعتمد تعليمات (167) لسنة 2017 كما نُشرت في الوقائع العراقية (العدد 4471)، وهذه التعليمات ملغاة حالياً بموجب تعليمات (10) لسنة 2025 اعتباراً من نفاذها، ولا تسري إلا على المعاملات المروَّجة قبل ذلك التاريخ. الأداة لا تغني عن تدقيق اللجان المختصة، ولا تفحص الشروط النوعية (قيّم/أصيل، رصانة المجلة فعلياً، صحة الفهرسة). القرار للجهات المختصة حصراً.</div>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // ---- DOM refs ----
+    const rankRadios = document.querySelectorAll('input[name="rank"]');
+    const rankCards = document.querySelectorAll('.rank-card');
+    const prevDate = document.getElementById('prevDate');
+    const applyDate = document.getElementById('applyDate');
+    const maturityStatus = document.getElementById('maturityStatus');
+    const t1ScoreDisplay = document.getElementById('t1ScoreDisplay');
+    const t2ScoreDisplay = document.getElementById('t2ScoreDisplay');
+    const finalResult = document.getElementById('finalResult');
+    const progT1 = document.getElementById('progT1');
+    const progT2 = document.getElementById('progT2');
+    const progT1Label = document.getElementById('progT1Label');
+    const progT2Label = document.getElementById('progT2Label');
+    const maturityResult = document.getElementById('maturityResult');
+    const adminBonusStatus = document.getElementById('adminBonusStatus');
+    const adminBonus = document.getElementById('adminBonus');
+    const jsflag = document.getElementById('jsflag');
+    const warningArea = document.getElementById('warningArea');
+
+    // ---- collapsible ----
+    const docToggle = document.getElementById('docToggle');
+    const docBody = document.getElementById('docBody');
+    const docIcon = document.getElementById('docIcon');
+    let docOpen = false;
+
+    docToggle.addEventListener('click', function() {
+      docOpen = !docOpen;
+      docBody.classList.toggle('open', docOpen);
+      docIcon.textContent = docOpen ? '▼' : '▶';
+      docIcon.classList.toggle('open', docOpen);
+    });
+
+    // ---- state ----
+    let currentRank = 'مدرس';
+    let rankData = { total:70, t1:46, t2:24, years:3, early:0 };
+    let t1Points = 0;
+    let t2Points = 0;
+    let maturityOk = false;
+    let maturityEarly = false;
+    let maturityText = '';
+    let maturityElapsed = '';
+    let maturityCompleteDate = '';
+
+    // ---- helpers ----
+    function getRankData(rankVal) {
+      for (let c of rankCards) {
+        if (c.dataset.rank === rankVal) {
+          return {
+            total: parseInt(c.dataset.total),
+            t1: parseInt(c.dataset.t1),
+            t2: parseInt(c.dataset.t2),
+            years: parseInt(c.dataset.years),
+            early: parseInt(c.dataset.early)
+          };
+        }
+      }
+      return null;
+    }
+
+    function diffYMD(d1, d2) {
+      if (!d1 || !d2) return null;
+      let y = d2.getFullYear() - d1.getFullYear();
+      let m = d2.getMonth() - d1.getMonth();
+      let d = d2.getDate() - d1.getDate();
+      if (d < 0) { m--; d += new Date(d2.getFullYear(), d2.getMonth(), 0).getDate(); }
+      if (m < 0) { y--; m += 12; }
+      let totalDays = Math.floor((d2 - d1) / (1000*60*60*24));
+      return { years:y, months:m, days:d, totalDays:totalDays };
+    }
+
+    function elapsedStr(diff) {
+      if (!diff) return '';
+      let parts = [];
+      if (diff.years > 0) parts.push(diff.years + ' سنة');
+      if (diff.months > 0) parts.push(diff.months + ' شهر');
+      if (diff.days > 0) parts.push(diff.days + ' يوم');
+      return parts.join(' و ') || '0 يوم';
+    }
+
+    // إضافة عدد سنوات (وأجزاء سنة كأشهر) بدقة تقويمية حقيقية، بدل تقريب "سنة = 365 يوماً"
+    function addYearsFrac(date, years) {
+      const d = new Date(date);
+      const whole = Math.floor(years);
+      d.setFullYear(d.getFullYear() + whole);
+      const rem = years - whole;
+      if (rem) d.setMonth(d.getMonth() + Math.round(rem * 12));
+      return d;
+    }
+
+    // ---- compute maturity (حساب تقويمي دقيق: سنة/شهر/يوم فعلي، لا تقريب بالأيام) ----
+    function computeMaturity() {
+      const prev = new Date(prevDate.value);
+      const apply = new Date(applyDate.value);
+      const today = new Date();
+      today.setHours(0,0,0,0);
+
+      if (apply > today) {
+        maturityStatus.className = 'status-msg status-bad';
+        maturityStatus.textContent = '⚠️ تاريخ تقديم الطلب لا يمكن أن يكون في المستقبل.';
+        maturityOk = false; maturityEarly = false; maturityText = '';
+        return;
+      }
+
+      if (apply < prev) {
+        maturityStatus.className = 'status-msg status-bad';
+        maturityStatus.textContent = '⚠️ تاريخ تقديم الطلب أقدم من تاريخ اللقب السابق!';
+        maturityOk = false; maturityEarly = false; maturityText = '';
+        return;
+      }
+
+      if (isNaN(prev.getTime()) || isNaN(apply.getTime())) {
+        maturityStatus.className = 'status-msg status-idle';
+        maturityStatus.textContent = '⏳ أدخل التاريخين ليظهر حكم المدة تلقائياً.';
+        maturityOk = false; maturityEarly = false; maturityText = '';
+        return;
+      }
+
+      const diff = diffYMD(prev, apply);
+      if (!diff) { maturityOk=false; return; }
+
+      const requiredYears = rankData.years;
+      const earlyAllowed = rankData.early;
+      const completeDate = addYearsFrac(prev, requiredYears);
+      const earlyDate = addYearsFrac(prev, requiredYears - 1);
+
+      let ok = false, early = false, txt = '';
+      const el = elapsedStr(diff);
+
+      if (apply >= completeDate) {
+        ok = true;
+        txt = `✅ مستوفٍ للمدة — ${el} أكملتها بتاريخ ${completeDate.toLocaleDateString('ar-IQ')} وقدّمت بعده.`;
+      } else if (earlyAllowed && apply >= earlyDate) {
+        ok = true;
+        early = true;
+        txt = `✅ التقديم ضمن المدة الأصغرية (المادة 4) — ${el}`;
+      } else {
+        ok = false;
+        txt = `❌ غير مستوفٍ — المدة المنقضية ${el}، يكتمل بتاريخ ${completeDate.toLocaleDateString('ar-IQ')}.`;
+        if (!earlyAllowed) txt += ' (لا يجوز التقديم المبكر لمرتبة مدرس.)';
+      }
+
+      maturityOk = ok;
+      maturityEarly = early;
+      maturityText = txt;
+      maturityElapsed = el;
+      maturityCompleteDate = completeDate.toLocaleDateString('ar-IQ');
+
+      maturityStatus.className = 'status-msg ' + (ok ? (early ? 'status-early' : 'status-ok') : 'status-fail');
+      maturityStatus.textContent = txt;
+    }
+
+    // ---- دالة حساب نقاط جدول (1) من الجدول التفاعلي ----
+    function computeT1() {
+      let total = 0;
+      const rows = document.querySelectorAll('#researchTableBody tr');
+      rows.forEach(row => {
+        const category = row.querySelector('.research-category')?.value || '';
+        const role = row.querySelector('.research-role')?.value || '';
+        const count = parseFloat(row.querySelector('.research-count')?.value) || 0;
+
+        if (!category || !role || count === 0) return;
+
+        // تحديد النقاط حسب المرتبة العلمية
+        let pointsPerPaper = 0;
+        const rank = currentRank;
+
+        // جدول (1-أ) - التخصصات العلمية
+        const sciPoints = {
+          'if': { 'أول': { مدرس:30, 'أستاذ مساعد':20, أستاذ:20 }, 'ثانٍ': { مدرس:24, 'أستاذ مساعد':16, أستاذ:16 }, 'ثالث': { مدرس:21, 'أستاذ مساعد':14, أستاذ:14 } },
+          'world': { 'أول': { مدرس:20, 'أستاذ مساعد':15, أستاذ:10 }, 'ثانٍ': { مدرس:16, 'أستاذ مساعد':12, أستاذ:8 }, 'ثالث': { مدرس:14, 'أستاذ مساعد':10.5, أستاذ:7 } },
+          'arabic': { 'أول': { مدرس:15, 'أستاذ مساعد':10, أستاذ:5 }, 'ثانٍ': { مدرس:12, 'أستاذ مساعد':8, أستاذ:4 }, 'ثالث': { مدرس:10.5, 'أستاذ مساعد':7, أستاذ:3.5 } }
+        };
+
+        // جدول (1-ب) - التخصصات الإنسانية
+        const humPoints = {
+          'humanities': { 'منفرد': { مدرس:20, 'أستاذ مساعد':15, أستاذ:15 }, 'مشترك مع باحث واحد': { مدرس:15, 'أستاذ مساعد':10, أستاذ:10 }, 'مشترك مع باحثين': { مدرس:10, 'أستاذ مساعد':5, أستاذ:5 } }
+        };
+
+        if (category === 'if' && sciPoints.if[role]) {
+          pointsPerPaper = sciPoints.if[role][rank] || 0;
+        } else if (category === 'world' && sciPoints.world[role]) {
+          pointsPerPaper = sciPoints.world[role][rank] || 0;
+        } else if (category === 'arabic' && sciPoints.arabic[role]) {
+          pointsPerPaper = sciPoints.arabic[role][rank] || 0;
+        } else if (category === 'humanities' && humPoints.humanities[role]) {
+          pointsPerPaper = humPoints.humanities[role][rank] || 0;
+        }
+
+        total += count * pointsPerPaper;
+      });
+      return total;
+    }
+
+    // ---- وظائف الجدول الديناميكي للبحوث ----
+    window.addResearchRow = function() {
+      const tbody = document.getElementById('researchTableBody');
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>
+          <select class="research-category" style="width:100%;">
+            <option value="if">ذات معامل تأثير (IF) — جدول 1-أ</option>
+            <option value="world">عالمية — جدول 1-أ</option>
+            <option value="arabic">عربية/عراقية — جدول 1-أ</option>
+            <option value="humanities">مجلات رصينة عربية/عراقية — جدول 1-ب</option>
+          </select>
+        </td>
+        <td>
+          <select class="research-role" style="width:100%;">
+            <option value="أول">باحث أول (100%)</option>
+            <option value="ثانٍ">باحث ثانٍ (80%)</option>
+            <option value="ثالث">باحث ثالث (70%)</option>
+          </select>
+        </td>
+        <td><input type="number" class="research-count" min="0" step="1" value="0" style="width:80px;"></td>
+        <td class="research-points">0</td>
+        <td><button type="button" class="btn-remove" onclick="this.closest('tr').remove(); updateAll();">✖</button></td>
+      `;
+      tbody.appendChild(row);
+
+      // عند تغيير التصنيف، تحديث خيارات الدور
+      const categorySelect = row.querySelector('.research-category');
+      const roleSelect = row.querySelector('.research-role');
+      categorySelect.addEventListener('change', function() {
+        const category = this.value;
+        roleSelect.innerHTML = '';
+        if (category === 'humanities') {
+          roleSelect.innerHTML = `
+            <option value="منفرد">منفرد</option>
+            <option value="مشترك مع باحث واحد">مشترك مع باحث واحد</option>
+            <option value="مشترك مع باحثين">مشترك مع باحثين</option>
+          `;
+        } else {
+          roleSelect.innerHTML = `
+            <option value="أول">باحث أول (100%)</option>
+            <option value="ثانٍ">باحث ثانٍ (80%)</option>
+            <option value="ثالث">باحث ثالث (70%)</option>
+          `;
+        }
+        updateAll();
+      });
+
+      // تحديث النقاط عند تغيير أي شيء
+      row.querySelectorAll('select, input').forEach(el => {
+        el.addEventListener('change', updateAll);
+        el.addEventListener('input', updateAll);
+      });
+
+      updateAll();
+    };
+
+    // إضافة صف افتراضي عند التحميل
+    window.addEventListener('load', function() {
+      if (document.querySelectorAll('#researchTableBody tr').length === 0) {
+        window.addResearchRow();
+      }
+    });
+
+    // ---- compute t2 with warnings ----
+    function computeT2() {
+      let total = 0;
+      const warnings = [];
+
+      // ---- الكتب من الجدول الديناميكي (بحسب عدد الصفحات ونوع المشاركة — م2 من الجدول) ----
+      const bookRows = document.querySelectorAll('#booksTableBody tr');
+      bookRows.forEach(row => {
+        const pages = row.querySelector('.book-pages')?.value || '<100';
+        const participation = row.querySelector('.book-participation')?.value || 'منفرد';
+        const basePoints = (BOOK_PAGE_POINTS[pages] && BOOK_PAGE_POINTS[pages][participation]) || 0;
+        const cell = row.querySelector('.book-points');
+        if (cell) cell.textContent = basePoints;
+        total += basePoints;
+      });
+
+      // ---- conference (no cap) ----
+      let conf_i = parseFloat(document.querySelector('input[data-cat="conf_i"]')?.value) || 0;
+      let conf_o = parseFloat(document.querySelector('input[data-cat="conf_o"]')?.value) || 0;
+      total += conf_i * 5 + conf_o * 10;
+
+      // ---- study (no cap) ----
+      let st_sp = parseFloat(document.querySelector('input[data-cat="study_sp"]')?.value) || 0;
+      let st_gn = parseFloat(document.querySelector('input[data-cat="study_gn"]')?.value) || 0;
+      total += st_sp * 15 + st_gn * 10;
+
+      // ---- review (cap 10) ----
+      let reviewVal = parseFloat(document.querySelector('input[data-cat="review"]')?.value) || 0;
+      let reviewPoints = Math.min(reviewVal * 5, 10);
+      if (reviewVal * 5 > 10) {
+        warnings.push(`⚠️ القيمة (${reviewVal}) لمقالات المراجعة تتجاوز السقف المسموح به (2 مقال = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += reviewPoints;
+
+      // ---- patent (no cap) ----
+      let pat_i = parseFloat(document.querySelector('input[data-cat="pat_i"]')?.value) || 0;
+      let pat_l = parseFloat(document.querySelector('input[data-cat="pat_l"]')?.value) || 0;
+      total += pat_i * 25 + pat_l * 10;
+
+      // ---- medals (no cap) ----
+      if (document.querySelector('input[data-cat="medal_i"]')?.checked) total += 10;
+      if (document.querySelector('input[data-cat="medal_l"]')?.checked) total += 5;
+
+      // ---- evaluation (cap 5 inside, 6 outside) ----
+      let eval_iVal = parseFloat(document.querySelector('input[data-cat="eval_i"]')?.value) || 0;
+      let eval_oVal = parseFloat(document.querySelector('input[data-cat="eval_o"]')?.value) || 0;
+      let eval_iPoints = Math.min(eval_iVal * 1, 5);
+      let eval_oPoints = Math.min(eval_oVal * 2, 6);
+      if (eval_iVal * 1 > 5) {
+        warnings.push(`⚠️ القيمة (${eval_iVal}) لتقييم البحوث داخل العراق تتجاوز السقف المسموح به (5 نقاط)، تم احتساب النقاط كـ 5 نقاط.`);
+      }
+      if (eval_oVal * 2 > 6) {
+        warnings.push(`⚠️ القيمة (${eval_oVal}) لتقييم البحوث خارج العراق تتجاوز السقف المسموح به (3 تقييمات = 6 نقاط)، تم احتساب النقاط كـ 6 نقاط.`);
+      }
+      total += eval_iPoints + eval_oPoints;
+
+      // ---- exam (cap 10) ----
+      let examVal = parseFloat(document.querySelector('input[data-cat="exam"]')?.value) || 0;
+      let examPoints = Math.min(examVal * 2, 10);
+      if (examVal * 2 > 10) {
+        warnings.push(`⚠️ القيمة (${examVal}) للجان الامتحانية تتجاوز السقف المسموح به (5 لجان = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += examPoints;
+
+      // ---- training (cap 10) ----
+      let trainVal = parseFloat(document.querySelector('input[data-cat="train"]')?.value) || 0;
+      let trainPoints = Math.min(trainVal * 2, 10);
+      if (trainVal * 2 > 10) {
+        warnings.push(`⚠️ القيمة (${trainVal}) للدورات التدريبية تتجاوز السقف المسموح به (5 دورات = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += trainPoints;
+
+      // ---- hospital (flat, per text: "15" fixed, no per-year multiplication) ----
+      if (document.querySelector('input[data-cat="hosp_flat"]')?.checked) total += 15;
+
+      // ---- editor (no cap) ----
+      if (document.querySelector('input[data-cat="editor_chief"]')?.checked) total += 10;
+      if (document.querySelector('input[data-cat="editor_member"]')?.checked) total += 5;
+      if (document.querySelector('input[data-cat="quality"]')?.checked) total += 3;
+
+      // ---- dept (cap 10) ----
+      let deptVal = parseFloat(document.querySelector('input[data-cat="dept_create"]')?.value) || 0;
+      let deptPoints = Math.min(deptVal * 2, 10);
+      if (deptVal * 2 > 10) {
+        warnings.push(`⚠️ القيمة (${deptVal}) لاستحداث الأقسام تتجاوز السقف المسموح به (5 استحداثات = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += deptPoints;
+
+      // ---- supervision (cap 10) ----
+      let sup_eduVal = parseFloat(document.querySelector('input[data-cat="superv_edu"]')?.value) || 0;
+      let sup_eduPoints = Math.min(sup_eduVal * 1, 10);
+      if (sup_eduVal * 1 > 10) {
+        warnings.push(`⚠️ القيمة (${sup_eduVal}) للإشراف التربوي تتجاوز السقف المسموح به (10 تكاليف = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += sup_eduPoints;
+
+      // ---- master/phd (no cap) ----
+      let master_ab = parseFloat(document.querySelector('select[data-cat="master_ab"]')?.value) || 0;
+      let phd_ab = parseFloat(document.querySelector('select[data-cat="phd_ab"]')?.value) || 0;
+      total += master_ab + phd_ab;
+
+      // ---- extra (cap 10) ----
+      let extraVal = parseFloat(document.querySelector('input[data-cat="extra"]')?.value) || 0;
+      let extraPoints = Math.min(extraVal * 2, 10);
+      if (extraVal * 2 > 10) {
+        warnings.push(`⚠️ القيمة (${extraVal}) للنشاطات اللاصفية تتجاوز السقف المسموح به (5 مشاركات = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += extraPoints;
+
+      // ---- conf_comm (cap 10) ----
+      let conf_commVal = parseFloat(document.querySelector('input[data-cat="conf_comm"]')?.value) || 0;
+      let conf_commPoints = Math.min(conf_commVal * 2, 10);
+      if (conf_commVal * 2 > 10) {
+        warnings.push(`⚠️ القيمة (${conf_commVal}) لعضوية لجان المؤتمرات تتجاوز السقف المسموح به (5 لجان = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += conf_commPoints;
+
+      // ---- internal_dept (cap 10) ----
+      let int_deptVal = parseFloat(document.querySelector('input[data-cat="internal_dept"]')?.value) || 0;
+      let int_deptPoints = Math.min(int_deptVal * 5, 10);
+      if (int_deptVal * 5 > 10) {
+        warnings.push(`⚠️ القيمة (${int_deptVal}) للإشراف على الأقسام الداخلية تتجاوز السقف المسموح به (2 سنوات = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += int_deptPoints;
+
+      // ---- min_comm (cap 10) ----
+      let min_commVal = parseFloat(document.querySelector('input[data-cat="min_comm"]')?.value) || 0;
+      let min_commPoints = Math.min(min_commVal * 5, 10);
+      if (min_commVal * 5 > 10) {
+        warnings.push(`⚠️ القيمة (${min_commVal}) للجان الوزارية تتجاوز السقف المسموح به (2 لجان = 10 نقاط)، تم احتساب النقاط كـ 10 نقاط.`);
+      }
+      total += min_commPoints;
+
+      // ---- coop (no cap) ----
+      let coop = parseFloat(document.querySelector('select[data-cat="coop"]')?.value) || 0;
+      total += coop;
+
+      // ---- hirsch (cap 30) ----
+      let hirschVal = parseFloat(document.querySelector('input[data-cat="hirsch"]')?.value) || 0;
+      let hirschPoints = Math.min(hirschVal * 1, 30);
+      if (hirschVal * 1 > 30) {
+        warnings.push(`⚠️ القيمة (${hirschVal}) لمؤشر هيرش تتجاوز السقف المسموح به (30 نقطة)، تم احتساب النقاط كـ 30 نقطة.`);
+      }
+      total += hirschPoints;
+
+      // ---- perf (no cap) ----
+      let perf = parseFloat(document.querySelector('select[data-cat="perf"]')?.value) || 0;
+      total += perf;
+
+      // ---- عرض التحذيرات ----
+      if (warnings.length > 0) {
+        warningArea.innerHTML = warnings.map(w => `<div class="warn-item">${w}</div>`).join('');
+        warningArea.classList.add('show');
+      } else {
+        warningArea.classList.remove('show');
+        warningArea.innerHTML = '';
+      }
+
+      return total;
+    }
+
+    // ---- وظائف الجدول الديناميكي للكتب ----
+    const BOOK_PAGE_POINTS = {
+      '<100':   { 'منفرد':10, 'مشترك مع باحث واحد':10, 'مشترك مع باحثين':5  },
+      '100-200':{ 'منفرد':15, 'مشترك مع باحث واحد':15, 'مشترك مع باحثين':10 },
+      '200-300':{ 'منفرد':20, 'مشترك مع باحث واحد':20, 'مشترك مع باحثين':15 },
+      '300+':   { 'منفرد':25, 'مشترك مع باحث واحد':25, 'مشترك مع باحثين':20 }
+    };
+    function bookRowHTML(b) {
+      b = b || {};
+      return `
+        <td><input type="text" class="book-title" placeholder="عنوان الكتاب / ISBN" value="${b.title||''}" style="width:100%;"></td>
+        <td>
+          <select class="book-type" style="width:100%;">
+            <option value="مؤلف" ${b.type==='مؤلف'?'selected':''}>مؤلف</option>
+            <option value="مترجم" ${b.type==='مترجم'?'selected':''}>مترجم</option>
+          </select>
+        </td>
+        <td>
+          <select class="book-pages" style="width:100%;">
+            <option value="<100" ${b.pages==='<100'?'selected':''}>أقل من 100 صفحة</option>
+            <option value="100-200" ${b.pages==='100-200'?'selected':''}>100 – 200 صفحة</option>
+            <option value="200-300" ${b.pages==='200-300'?'selected':''}>200 – 300 صفحة</option>
+            <option value="300+" ${b.pages==='300+'?'selected':''}>300 صفحة فما فوق</option>
+          </select>
+        </td>
+        <td>
+          <select class="book-participation" style="width:100%;">
+            <option value="منفرد" ${b.participation==='منفرد'?'selected':''}>منفرد</option>
+            <option value="مشترك مع باحث واحد" ${b.participation==='مشترك مع باحث واحد'?'selected':''}>مشترك مع باحث واحد</option>
+            <option value="مشترك مع باحثين" ${b.participation==='مشترك مع باحثين'?'selected':''}>مشترك مع باحثين</option>
+          </select>
+        </td>
+        <td class="book-points">0</td>
+        <td><button type="button" class="btn-remove" onclick="this.closest('tr').remove(); updateAll();">✖</button></td>
+      `;
+    }
+    function bindBookRow(row) {
+      row.querySelectorAll('select, input').forEach(el => {
+        el.addEventListener('change', updateAll);
+        el.addEventListener('input', updateAll);
+      });
+    }
+    window.addBookRow = function(data) {
+      const tbody = document.getElementById('booksTableBody');
+      const row = document.createElement('tr');
+      row.innerHTML = bookRowHTML(data);
+      tbody.appendChild(row);
+      bindBookRow(row);
+      updateAll();
+    };
+
+    // ---- update all ----
+    function updateAll() {
+      let rankVal = document.querySelector('input[name="rank"]:checked')?.value || 'مدرس';
+      currentRank = rankVal;
+      rankData = getRankData(rankVal) || { total:70, t1:46, t2:24, years:3, early:0 };
+      rankCards.forEach(c => c.classList.toggle('selected', c.dataset.rank === rankVal));
+
+      // حساب نقاط جدول (1)
+      t1Points = computeT1();
+      t1ScoreDisplay.textContent = `📊 نقاط جدول (1): ${t1Points.toFixed(1)}`;
+
+      // حساب المدة (تعتمد على t1Points ولكن بدون شرط إضافي)
+      computeMaturity();
+
+      // حساب نقاط جدول (2)
+      t2Points = computeT2();
+      t2ScoreDisplay.textContent = `📊 نقاط جدول (2): ${t2Points.toFixed(1)}`;
+
+      // تحديث نقاط كل صف في جدول البحوث
+      document.querySelectorAll('#researchTableBody tr').forEach(row => {
+        const category = row.querySelector('.research-category')?.value || '';
+        const role = row.querySelector('.research-role')?.value || '';
+        const count = parseFloat(row.querySelector('.research-count')?.value) || 0;
+        let pointsPerPaper = 0;
+        const rank = currentRank;
+
+        const sciPoints = {
+          'if': { 'أول': { مدرس:30, 'أستاذ مساعد':20, أستاذ:20 }, 'ثانٍ': { مدرس:24, 'أستاذ مساعد':16, أستاذ:16 }, 'ثالث': { مدرس:21, 'أستاذ مساعد':14, أستاذ:14 } },
+          'world': { 'أول': { مدرس:20, 'أستاذ مساعد':15, أستاذ:10 }, 'ثانٍ': { مدرس:16, 'أستاذ مساعد':12, أستاذ:8 }, 'ثالث': { مدرس:14, 'أستاذ مساعد':10.5, أستاذ:7 } },
+          'arabic': { 'أول': { مدرس:15, 'أستاذ مساعد':10, أستاذ:5 }, 'ثانٍ': { مدرس:12, 'أستاذ مساعد':8, أستاذ:4 }, 'ثالث': { مدرس:10.5, 'أستاذ مساعد':7, أستاذ:3.5 } }
+        };
+        const humPoints = {
+          'humanities': { 'منفرد': { مدرس:20, 'أستاذ مساعد':15, أستاذ:15 }, 'مشترك مع باحث واحد': { مدرس:15, 'أستاذ مساعد':10, أستاذ:10 }, 'مشترك مع باحثين': { مدرس:10, 'أستاذ مساعد':5, أستاذ:5 } }
+        };
+
+        if (category === 'if' && sciPoints.if[role]) {
+          pointsPerPaper = sciPoints.if[role][rank] || 0;
+        } else if (category === 'world' && sciPoints.world[role]) {
+          pointsPerPaper = sciPoints.world[role][rank] || 0;
+        } else if (category === 'arabic' && sciPoints.arabic[role]) {
+          pointsPerPaper = sciPoints.arabic[role][rank] || 0;
+        } else if (category === 'humanities' && humPoints.humanities[role]) {
+          pointsPerPaper = humPoints.humanities[role][rank] || 0;
+        }
+        const totalPoints = count * pointsPerPaper;
+        const pointsCell = row.querySelector('.research-points');
+        if (pointsCell) pointsCell.textContent = totalPoints.toFixed(1);
+      });
+
+      // ---- نسبة إضافة المنصب (م10): تُضاف نسبة من "مجموع النقاط الحاصل عليها" إلى المجموع الكلي حصراً ----
+      // ولا تُخفَّض الحدود الدنيا للجدولين ولا للمجموع الكلي؛ فالحد يبقى كما هو دوماً.
+      const bonusVal = parseInt(adminBonus.value) || 0;
+      let halfOk = false;
+      if (maturityOk) {
+        const prev = new Date(prevDate.value);
+        const apply = new Date(applyDate.value);
+        if (!isNaN(prev.getTime()) && !isNaN(apply.getTime())) {
+          const half = addYearsFrac(prev, rankData.years / 2);
+          halfOk = apply >= half;
+        }
+      }
+      const bonusPct = (bonusVal > 0 && halfOk) ? bonusVal : 0;
+      const totalRaw = t1Points + t2Points;
+      const bonusPoints = totalRaw * bonusPct / 100;
+      const totalWithBonus = totalRaw + bonusPoints;
+
+      const requiredT1 = rankData.t1;
+      const requiredT2 = rankData.t2;
+      const requiredTotal = rankData.total;
+
+      // ---- أشرطة التقدم: على النقاط الخام دون احتساب النسبة (الفصل المطلق بين الجدولين) ----
+      const pctT1 = Math.min((t1Points / requiredT1) * 100, 100);
+      const pctT2 = Math.min((t2Points / requiredT2) * 100, 100);
+      progT1.style.width = pctT1 + '%';
+      progT2.style.width = pctT2 + '%';
+      progT1.className = 'fill' + (t1Points >= requiredT1 ? ' green' : '');
+      progT2.className = 'fill' + (t2Points >= requiredT2 ? ' green' : '');
+      progT1Label.textContent = `${t1Points.toFixed(1)} / ${requiredT1.toFixed(1)}`;
+      progT2Label.textContent = `${t2Points.toFixed(1)} / ${requiredT2.toFixed(1)}`;
+
+      // ---- رسالة المدة ----
+      let maturityTextFinal = maturityOk ? (maturityEarly ? '✅ ضمن المدة الأصغرية' : '✅ مستوفٍ للمدة') : '❌ غير مستوفٍ للمدة';
+      maturityResult.className = 'status-msg ' + (maturityOk ? (maturityEarly ? 'status-early' : 'status-ok') : 'status-fail');
+      maturityResult.textContent = maturityTextFinal + ' — ' + (maturityText || '');
+
+      // ---- حالة نصف المدة ----
+      adminBonusStatus.textContent = bonusVal > 0 ? 
+        (halfOk ? '✅ شرط نصف المدة الأصغرية مستوفٍ — تُضاف النسبة إلى المجموع الكلي (م10).' : '⚠️ شرط نصف المدة الأصغرية غير مستوفٍ (لا تُضاف النسبة).') :
+        '⚪ لم تُحدد نسبة إضافة.';
+
+      // ---- النتيجة النهائية ----
+      // قانون الفصل المطلق: استيفاء ج1 وج2 يُقاس بالنقاط الخام دون أي إضافة؛
+      // نسبة المنصب تُضاف إلى المجموع الكلي فقط (م10)، ولا تُخفَّض بها أي عتبة.
+      const okT1 = t1Points >= requiredT1;
+      const okT2 = t2Points >= requiredT2;
+      const okTotal = totalWithBonus >= requiredTotal;
+      const okMaturity = maturityOk;
+
+      let verdict = '';
+      let cls = 'result-warn';
+      if (!okMaturity) {
+        verdict = '❌ غير مستوفٍ للمدة القانونية';
+        cls = 'result-fail';
+      } else if (okT1 && okT2 && okTotal) {
+        verdict = '✅ مستوفٍ تماماً — جميع الشروط محققة';
+        cls = 'result-pass';
+      } else if (okT1 && okT2 && !okTotal) {
+        verdict = '⚠️ ج1 وج2 مستوفيان منفردين، ولكن المجموع الكلي (بعد إضافة نسبة المنصب) دون الحد المطلوب';
+        cls = 'result-fail';
+      } else if (okT1 && !okT2) {
+        verdict = '❌ المعاملة غير مستوفية: نقاط النشاطات (جدول ٢) دون الحد الإلزامي';
+        cls = 'result-fail';
+      } else if (!okT1 && okT2) {
+        verdict = '❌ المعاملة غير مستوفية: نقاط النتاج العلمي (جدول ١) دون الحد الإلزامي';
+        cls = 'result-fail';
+      } else {
+        verdict = '❌ المعاملة غير مستوفية: نقاط الجدولين دون الحد الإلزامي';
+        cls = 'result-fail';
+      }
+
+      finalResult.className = 'result-box ' + cls;
+      finalResult.innerHTML = `
+        <div>${verdict}</div>
+        <div style="font-size:1rem;font-weight:400;margin-top:8px;">
+          ج1: ${t1Points.toFixed(1)} / ${requiredT1.toFixed(1)} &nbsp;|&nbsp; ج2: ${t2Points.toFixed(1)} / ${requiredT2.toFixed(1)} &nbsp;|&nbsp;
+          المجموع الخام: ${totalRaw.toFixed(1)} ${bonusPct>0?`+ ${bonusPoints.toFixed(1)} (نسبة ${bonusPct}%) = ${totalWithBonus.toFixed(1)}`:''} &nbsp;|&nbsp; المطلوب: ${requiredTotal.toFixed(1)}
+        </div>
+      `;
+    }
+
+    // ---- event listeners ----
+    rankRadios.forEach(r => r.addEventListener('change', updateAll));
+    prevDate.addEventListener('change', updateAll);
+    applyDate.addEventListener('change', updateAll);
+    adminBonus.addEventListener('change', updateAll);
+
+    document.querySelectorAll('input[type="number"], input[type="checkbox"], select[data-cat]').forEach(el => {
+      el.addEventListener('input', updateAll);
+      el.addEventListener('change', updateAll);
+    });
+
+    // ---- save/load/reset ----
+    function saveState() {
+      // جمع بيانات البحوث
+      const researchData = [];
+      document.querySelectorAll('#researchTableBody tr').forEach(row => {
+        const category = row.querySelector('.research-category')?.value || '';
+        const role = row.querySelector('.research-role')?.value || '';
+        const count = parseFloat(row.querySelector('.research-count')?.value) || 0;
+        researchData.push({ category, role, count });
+      });
+
+      // جمع بيانات الكتب
+      const bookData = [];
+      document.querySelectorAll('#booksTableBody tr').forEach(row => {
+        const title = row.querySelector('.book-title')?.value || '';
+        const type = row.querySelector('.book-type')?.value || 'مؤلف';
+        const pages = row.querySelector('.book-pages')?.value || '<100';
+        const participation = row.querySelector('.book-participation')?.value || 'منفرد';
+        bookData.push({ title, type, pages, participation });
+      });
+
+      const data = {
+        rank: document.querySelector('input[name="rank"]:checked')?.value || 'مدرس',
+        prevDate: prevDate.value,
+        applyDate: applyDate.value,
+        adminBonus: adminBonus.value,
+        inputs: {},
+        research: researchData,
+        books: bookData
+      };
+      document.querySelectorAll('input[data-cat], select[data-cat]').forEach(el => {
+        if (el.type === 'checkbox') {
+          data.inputs[el.dataset.cat] = el.checked ? 'true' : 'false';
+        } else {
+          data.inputs[el.dataset.cat] = el.value;
+        }
+      });
+      data.doc = {
+        order: document.getElementById('doc_order')?.value || '',
+        order_date: document.getElementById('doc_order_date')?.value || '',
+        arabic: document.getElementById('doc_arabic')?.value || '',
+        arabic_date: document.getElementById('doc_arabic_date')?.value || '',
+        teaching: document.getElementById('doc_teaching')?.value || '',
+        teaching_date: document.getElementById('doc_teaching_date')?.value || '',
+        computer: document.getElementById('doc_computer')?.value || '',
+        computer_date: document.getElementById('doc_computer_date')?.value || '',
+        teaching_test: document.getElementById('doc_teaching_test')?.value || '',
+        teaching_test_date: document.getElementById('doc_teaching_test_date')?.value || '',
+        plag_e: document.getElementById('doc_plag_e')?.value || '',
+        plag_e_date: document.getElementById('doc_plag_e_date')?.value || '',
+        plag_p: document.getElementById('doc_plag_p')?.value || '',
+        plag_p_date: document.getElementById('doc_plag_p_date')?.value || '',
+        rank: document.getElementById('doc_rank')?.value || '',
+        rank_date: document.getElementById('doc_rank_date')?.value || '',
+        comm: document.getElementById('doc_comm')?.value || '',
+        comm_date: document.getElementById('doc_comm_date')?.value || '',
+        hirsch_name: document.getElementById('doc_hirsch_name')?.value || '',
+        hirsch_papers: document.getElementById('doc_hirsch_papers')?.value || '',
+        hirsch_h: document.getElementById('doc_hirsch_h')?.value || '',
+        hirsch_citations: document.getElementById('doc_hirsch_citations')?.value || '',
+        hirsch_order: document.getElementById('doc_hirsch_order')?.value || '',
+        hirsch_date: document.getElementById('doc_hirsch_date')?.value || ''
+      };
+      try {
+        localStorage.setItem('taraqiyat2017_v1', JSON.stringify(data));
+        alert('✅ تم حفظ التقدم.');
+      } catch(e) { alert('⚠️ فشل الحفظ.'); }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem('taraqiyat2017_v1');
+        if (!raw) { alert('⚠️ لا يوجد حفظ سابق.'); return; }
+        const data = JSON.parse(raw);
+        if (data.rank) {
+          const r = document.querySelector(`input[name="rank"][value="${data.rank}"]`);
+          if (r) r.checked = true;
+        }
+        if (data.prevDate) prevDate.value = data.prevDate;
+        if (data.applyDate) applyDate.value = data.applyDate;
+        if (data.adminBonus) adminBonus.value = data.adminBonus;
+        if (data.inputs) {
+          document.querySelectorAll('input[data-cat], select[data-cat]').forEach(el => {
+            if (data.inputs[el.dataset.cat] !== undefined) {
+              if (el.type === 'checkbox') {
+                el.checked = data.inputs[el.dataset.cat] === 'true';
+              } else {
+                el.value = data.inputs[el.dataset.cat];
+              }
+            }
+          });
+        }
+        // استعادة البحوث
+        if (data.research && data.research.length > 0) {
+          const tbody = document.getElementById('researchTableBody');
+          tbody.innerHTML = '';
+          data.research.forEach(r => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>
+                <select class="research-category" style="width:100%;">
+                  <option value="if" ${r.category==='if'?'selected':''}>ذات معامل تأثير (IF) — جدول 1-أ</option>
+                  <option value="world" ${r.category==='world'?'selected':''}>عالمية — جدول 1-أ</option>
+                  <option value="arabic" ${r.category==='arabic'?'selected':''}>عربية/عراقية — جدول 1-أ</option>
+                  <option value="humanities" ${r.category==='humanities'?'selected':''}>مجلات رصينة عربية/عراقية — جدول 1-ب</option>
+                </select>
+              </td>
+              <td>
+                <select class="research-role" style="width:100%;">
+                  ${r.category === 'humanities' ? `
+                    <option value="منفرد" ${r.role==='منفرد'?'selected':''}>منفرد</option>
+                    <option value="مشترك مع باحث واحد" ${r.role==='مشترك مع باحث واحد'?'selected':''}>مشترك مع باحث واحد</option>
+                    <option value="مشترك مع باحثين" ${r.role==='مشترك مع باحثين'?'selected':''}>مشترك مع باحثين</option>
+                  ` : `
+                    <option value="أول" ${r.role==='أول'?'selected':''}>باحث أول (100%)</option>
+                    <option value="ثانٍ" ${r.role==='ثانٍ'?'selected':''}>باحث ثانٍ (80%)</option>
+                    <option value="ثالث" ${r.role==='ثالث'?'selected':''}>باحث ثالث (70%)</option>
+                  `}
+                </select>
+              </td>
+              <td><input type="number" class="research-count" min="0" step="1" value="${r.count || 0}" style="width:80px;"></td>
+              <td class="research-points">0</td>
+              <td><button type="button" class="btn-remove" onclick="this.closest('tr').remove(); updateAll();">✖</button></td>
+            `;
+            tbody.appendChild(row);
+            // ربط الأحداث
+            row.querySelectorAll('select, input').forEach(el => {
+              el.addEventListener('change', updateAll);
+              el.addEventListener('input', updateAll);
+            });
+            // ربط تغيير التصنيف لتحديث خيارات الدور
+            const catSel = row.querySelector('.research-category');
+            catSel.addEventListener('change', function() {
+              const category = this.value;
+              const roleSel = row.querySelector('.research-role');
+              roleSel.innerHTML = '';
+              if (category === 'humanities') {
+                roleSel.innerHTML = `
+                  <option value="منفرد">منفرد</option>
+                  <option value="مشترك مع باحث واحد">مشترك مع باحث واحد</option>
+                  <option value="مشترك مع باحثين">مشترك مع باحثين</option>
+                `;
+              } else {
+                roleSel.innerHTML = `
+                  <option value="أول">باحث أول (100%)</option>
+                  <option value="ثانٍ">باحث ثانٍ (80%)</option>
+                  <option value="ثالث">باحث ثالث (70%)</option>
+                `;
+              }
+              updateAll();
+            });
+          });
+        }
+        // استعادة الكتب
+        if (data.books && data.books.length > 0) {
+          const tbody = document.getElementById('booksTableBody');
+          tbody.innerHTML = '';
+          data.books.forEach(b => {
+            const row = document.createElement('tr');
+            row.innerHTML = bookRowHTML(b);
+            tbody.appendChild(row);
+            bindBookRow(row);
+          });
+        }
+        if (data.doc) {
+          const d = data.doc;
+          document.getElementById('doc_order').value = d.order || '';
+          document.getElementById('doc_order_date').value = d.order_date || '';
+          document.getElementById('doc_arabic').value = d.arabic || '';
+          document.getElementById('doc_arabic_date').value = d.arabic_date || '';
+          document.getElementById('doc_teaching').value = d.teaching || '';
+          document.getElementById('doc_teaching_date').value = d.teaching_date || '';
+          document.getElementById('doc_computer').value = d.computer || '';
+          document.getElementById('doc_computer_date').value = d.computer_date || '';
+          document.getElementById('doc_teaching_test').value = d.teaching_test || '';
+          document.getElementById('doc_teaching_test_date').value = d.teaching_test_date || '';
+          document.getElementById('doc_plag_e').value = d.plag_e || '';
+          document.getElementById('doc_plag_e_date').value = d.plag_e_date || '';
+          document.getElementById('doc_plag_p').value = d.plag_p || '';
+          document.getElementById('doc_plag_p_date').value = d.plag_p_date || '';
+          document.getElementById('doc_rank').value = d.rank || '';
+          document.getElementById('doc_rank_date').value = d.rank_date || '';
+          document.getElementById('doc_comm').value = d.comm || '';
+          document.getElementById('doc_comm_date').value = d.comm_date || '';
+          document.getElementById('doc_hirsch_name').value = d.hirsch_name || '';
+          document.getElementById('doc_hirsch_papers').value = d.hirsch_papers || '';
+          document.getElementById('doc_hirsch_h').value = d.hirsch_h || '';
+          document.getElementById('doc_hirsch_citations').value = d.hirsch_citations || '';
+          document.getElementById('doc_hirsch_order').value = d.hirsch_order || '';
+          document.getElementById('doc_hirsch_date').value = d.hirsch_date || '';
+        }
+        updateAll();
+        alert('✅ تم استرجاع الحفظ.');
+      } catch(e) { alert('⚠️ فشل الاسترجاع.'); }
+    }
+
+    function resetAll() {
+      if (!confirm('🔄 هل تريد بدء معاملة جديدة؟ سيتم مسح جميع المدخلات.')) return;
+      document.querySelector('input[name="rank"][value="مدرس"]').checked = true;
+      prevDate.value = '2018-01-01';
+      applyDate.value = '2022-01-01';
+      adminBonus.value = '0';
+      document.querySelectorAll('input[data-cat]').forEach(el => {
+        if (el.type === 'checkbox') el.checked = false;
+        else if (el.type === 'number') el.value = '0';
+        else if (el.type === 'text') el.value = '';
+        else if (el.type === 'date') el.value = '';
+      });
+      document.querySelectorAll('select[data-cat]').forEach(el => el.value = '0');
+      // إعادة تعيين البحوث
+      const researchBody = document.getElementById('researchTableBody');
+      researchBody.innerHTML = '';
+      window.addResearchRow();
+      // إعادة تعيين الكتب
+      const booksBody = document.getElementById('booksTableBody');
+      booksBody.innerHTML = '';
+      window.addBookRow();
+      // التوثيق
+      const docFields = ['doc_order','doc_order_date','doc_arabic','doc_arabic_date','doc_teaching','doc_teaching_date','doc_computer','doc_computer_date','doc_teaching_test','doc_teaching_test_date','doc_plag_e','doc_plag_e_date','doc_plag_p','doc_plag_p_date','doc_rank','doc_rank_date','doc_comm','doc_comm_date','doc_hirsch_name','doc_hirsch_papers','doc_hirsch_h','doc_hirsch_citations','doc_hirsch_order','doc_hirsch_date'];
+      docFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      localStorage.removeItem('taraqiyat2017_v1');
+      updateAll();
+      alert('🔄 تمت إعادة التعيين.');
+    }
+
+    document.getElementById('saveBtn').addEventListener('click', saveState);
+    document.getElementById('loadBtn').addEventListener('click', loadState);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+    document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
+
+    document.getElementById('csvBtn').addEventListener('click', function() {
+      let lines = [];
+      lines.push('\uFEFFالبند,القيمة');
+      lines.push(`اللقب,${currentRank}`);
+      lines.push(`نقاط جدول(1) الخام,${t1Points.toFixed(1)}`);
+      lines.push(`الحد المطلوب ج1,${rankData.t1.toFixed(1)}`);
+      lines.push(`نقاط جدول(2) الخام,${t2Points.toFixed(1)}`);
+      lines.push(`الحد المطلوب ج2,${rankData.t2.toFixed(1)}`);
+      const bonusVal = parseInt(adminBonus.value) || 0;
+      let halfOk = false;
+      if (maturityOk) {
+        const prev = new Date(prevDate.value);
+        const apply = new Date(applyDate.value);
+        if (!isNaN(prev.getTime()) && !isNaN(apply.getTime())) {
+          const half = addYearsFrac(prev, rankData.years / 2);
+          halfOk = apply >= half;
+        }
+      }
+      const bonusPct = (bonusVal > 0 && halfOk) ? bonusVal : 0;
+      const totalRawCsv = t1Points + t2Points;
+      const bonusPointsCsv = totalRawCsv * bonusPct / 100;
+      lines.push(`المجموع الخام (ج1+ج2),${totalRawCsv.toFixed(1)}`);
+      lines.push(`نسبة إضافة المنصب,${bonusPct}%`);
+      lines.push(`نقاط الإضافة,${bonusPointsCsv.toFixed(1)}`);
+      lines.push(`المجموع بعد الإضافة,${(totalRawCsv+bonusPointsCsv).toFixed(1)}`);
+      lines.push(`الحد المطلوب الكلي,${rankData.total.toFixed(1)}`);
+      lines.push(`المدة,${maturityOk ? (maturityEarly ? 'ضمن المدة الأصغرية' : 'مستوفٍ') : 'غير مستوفٍ'}`);
+      const blob = new Blob([lines.join('\n')], {type:'text/csv;charset=utf-8;'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'ترقية_2017.csv';
+      link.click();
+    });
+
+    // ---- auto-load ----
+    window.addEventListener('load', function() {
+      try {
+        const raw = localStorage.getItem('taraqiyat2017_v1');
+        if (raw) {
+          const data = JSON.parse(raw);
+          if (data.rank) {
+            const r = document.querySelector(`input[name="rank"][value="${data.rank}"]`);
+            if (r) r.checked = true;
+          }
+          if (data.prevDate) prevDate.value = data.prevDate;
+          if (data.applyDate) applyDate.value = data.applyDate;
+          if (data.adminBonus) adminBonus.value = data.adminBonus;
+          if (data.inputs) {
+            document.querySelectorAll('input[data-cat], select[data-cat]').forEach(el => {
+              if (data.inputs[el.dataset.cat] !== undefined) {
+                if (el.type === 'checkbox') {
+                  el.checked = data.inputs[el.dataset.cat] === 'true';
+                } else {
+                  el.value = data.inputs[el.dataset.cat];
+                }
+              }
+            });
+          }
+          if (data.research && data.research.length > 0) {
+            const tbody = document.getElementById('researchTableBody');
+            tbody.innerHTML = '';
+            data.research.forEach(r => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>
+                  <select class="research-category" style="width:100%;">
+                    <option value="if" ${r.category==='if'?'selected':''}>ذات معامل تأثير (IF) — جدول 1-أ</option>
+                    <option value="world" ${r.category==='world'?'selected':''}>عالمية — جدول 1-أ</option>
+                    <option value="arabic" ${r.category==='arabic'?'selected':''}>عربية/عراقية — جدول 1-أ</option>
+                    <option value="humanities" ${r.category==='humanities'?'selected':''}>مجلات رصينة عربية/عراقية — جدول 1-ب</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="research-role" style="width:100%;">
+                    ${r.category === 'humanities' ? `
+                      <option value="منفرد" ${r.role==='منفرد'?'selected':''}>منفرد</option>
+                      <option value="مشترك مع باحث واحد" ${r.role==='مشترك مع باحث واحد'?'selected':''}>مشترك مع باحث واحد</option>
+                      <option value="مشترك مع باحثين" ${r.role==='مشترك مع باحثين'?'selected':''}>مشترك مع باحثين</option>
+                    ` : `
+                      <option value="أول" ${r.role==='أول'?'selected':''}>باحث أول (100%)</option>
+                      <option value="ثانٍ" ${r.role==='ثانٍ'?'selected':''}>باحث ثانٍ (80%)</option>
+                      <option value="ثالث" ${r.role==='ثالث'?'selected':''}>باحث ثالث (70%)</option>
+                    `}
+                  </select>
+                </td>
+                <td><input type="number" class="research-count" min="0" step="1" value="${r.count || 0}" style="width:80px;"></td>
+                <td class="research-points">0</td>
+                <td><button type="button" class="btn-remove" onclick="this.closest('tr').remove(); updateAll();">✖</button></td>
+              `;
+              tbody.appendChild(row);
+              row.querySelectorAll('select, input').forEach(el => {
+                el.addEventListener('change', updateAll);
+                el.addEventListener('input', updateAll);
+              });
+              const catSel = row.querySelector('.research-category');
+              catSel.addEventListener('change', function() {
+                const category = this.value;
+                const roleSel = row.querySelector('.research-role');
+                roleSel.innerHTML = '';
+                if (category === 'humanities') {
+                  roleSel.innerHTML = `
+                    <option value="منفرد">منفرد</option>
+                    <option value="مشترك مع باحث واحد">مشترك مع باحث واحد</option>
+                    <option value="مشترك مع باحثين">مشترك مع باحثين</option>
+                  `;
+                } else {
+                  roleSel.innerHTML = `
+                    <option value="أول">باحث أول (100%)</option>
+                    <option value="ثانٍ">باحث ثانٍ (80%)</option>
+                    <option value="ثالث">باحث ثالث (70%)</option>
+                  `;
+                }
+                updateAll();
+              });
+            });
+          }
+          if (data.books && data.books.length > 0) {
+            const tbody = document.getElementById('booksTableBody');
+            tbody.innerHTML = '';
+            data.books.forEach(b => {
+              const row = document.createElement('tr');
+              row.innerHTML = bookRowHTML(b);
+              tbody.appendChild(row);
+              bindBookRow(row);
+            });
+          }
+          if (data.doc) {
+            const d = data.doc;
+            document.getElementById('doc_order').value = d.order || '';
+            document.getElementById('doc_order_date').value = d.order_date || '';
+            document.getElementById('doc_arabic').value = d.arabic || '';
+            document.getElementById('doc_arabic_date').value = d.arabic_date || '';
+            document.getElementById('doc_teaching').value = d.teaching || '';
+            document.getElementById('doc_teaching_date').value = d.teaching_date || '';
+            document.getElementById('doc_computer').value = d.computer || '';
+            document.getElementById('doc_computer_date').value = d.computer_date || '';
+            document.getElementById('doc_teaching_test').value = d.teaching_test || '';
+            document.getElementById('doc_teaching_test_date').value = d.teaching_test_date || '';
+            document.getElementById('doc_plag_e').value = d.plag_e || '';
+            document.getElementById('doc_plag_e_date').value = d.plag_e_date || '';
+            document.getElementById('doc_plag_p').value = d.plag_p || '';
+            document.getElementById('doc_plag_p_date').value = d.plag_p_date || '';
+            document.getElementById('doc_rank').value = d.rank || '';
+            document.getElementById('doc_rank_date').value = d.rank_date || '';
+            document.getElementById('doc_comm').value = d.comm || '';
+            document.getElementById('doc_comm_date').value = d.comm_date || '';
+            document.getElementById('doc_hirsch_name').value = d.hirsch_name || '';
+            document.getElementById('doc_hirsch_papers').value = d.hirsch_papers || '';
+            document.getElementById('doc_hirsch_h').value = d.hirsch_h || '';
+            document.getElementById('doc_hirsch_citations').value = d.hirsch_citations || '';
+            document.getElementById('doc_hirsch_order').value = d.hirsch_order || '';
+            document.getElementById('doc_hirsch_date').value = d.hirsch_date || '';
+          }
+        }
+      } catch(e) {}
+      updateAll();
+      jsflag.textContent = '✓ الحساب التلقائي يعمل';
+      jsflag.className = 'active';
+    });
+
+    rankRadios.forEach(r => {
+      r.addEventListener('change', function() {
+        rankCards.forEach(c => c.classList.toggle('selected', c.querySelector('input[type="radio"]') === this));
+        updateAll();
+      });
+    });
+
+  })();
+</script>
+
+</body>
+</html>
